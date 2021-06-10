@@ -14,8 +14,10 @@ import androidx.fragment.app.viewModels
 import com.dims.incidentmapper.R
 import com.dims.incidentmapper.databinding.FragmentIncidentsBinding
 import com.dims.incidentmapper.databinding.ReportIncidentDialogBinding
+import com.dims.incidentmapper.databinding.WelcomeDialogBinding
 import com.dims.incidentmapper.utils.IncidentType
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -47,12 +49,13 @@ class IncidentsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(vm.callback)
+        showWelcomeDialog()
 
         vm.mapClickLiveData.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { latLng ->
                 var title = ""
                 val dialogBinding = ReportIncidentDialogBinding.inflate(layoutInflater)
-                val dialog = AlertDialog.Builder(requireContext())
+                val dialog = MaterialAlertDialogBuilder(requireContext())
                     .setView(dialogBinding.root)
                     .setCancelable(false)
                     .show()
@@ -82,21 +85,19 @@ class IncidentsFragment : Fragment() {
         }
     }
 
-//    private fun showWelcomeDialog() {
-//        val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("welcomeDialogs", MODE_PRIVATE)
-//        val value = sharedPreferences.getInt("welcome", 1)
-//        if (value == 1) {
-//            val inflater = layoutInflater
-//            val dialogView: View = inflater.inflate(R.layout.welcome_dialog, null)
-//            val dialog = AlertDialog.Builder(requireContext())
-//                .setView(dialogView)
-//                .setCancelable(false)
-//                .show()
-//            val btnClose: ImageView = dialog.findViewById(R.id.close)
-//            btnClose.setOnClickListener { v ->
-//                dialog.cancel()
-//                sharedPreferences.edit().putInt("welcome", 0).apply()
-//            }
-//        }
-//    }
+    private fun showWelcomeDialog() {
+        val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("welcomeDialog", MODE_PRIVATE)
+        val value = sharedPreferences.getInt("welcomeMessage", 1)
+        if (value == 1) {
+            val dialogBinding = WelcomeDialogBinding.inflate(layoutInflater)
+            val dialog = MaterialAlertDialogBuilder(requireContext())
+                .setView(dialogBinding.root)
+                .setCancelable(false)
+                .show()
+            dialogBinding.okButton.setOnClickListener {
+                dialog.cancel()
+                sharedPreferences.edit().putInt("welcomeMessage", 0).apply()
+            }
+        }
+    }
 }

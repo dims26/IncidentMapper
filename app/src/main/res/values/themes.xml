@@ -12,9 +12,20 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="materialAlertDialogTheme">@style/MyThemeOverlayAlertDialog</item>
     </style>
 
     <style name="NoActionBar.Launcher" parent="Theme.IncidentMapper">
         <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <!-- Rounded Alert Dialog -->
+    <style name="MyThemeOverlayAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Dialog.Rounded</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MyApp.Dialog.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
     </style>
 </resources>

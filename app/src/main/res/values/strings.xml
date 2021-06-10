@@ -5,6 +5,27 @@
     <string name="description">Description</string>
     <string name="add_incident">Add Incident</string>
     <string name="select_a_type">Select a type</string>
+    <string name="welcome">Welcome</string>
+    <string name="welcome_dialog_body">Welcome to Incident Mapper!<br/>
+        This is a tool to facilitate viewing and reporting incidents.
+        There are five kinds of incidents:
+    </string>
+    <string name="welcome_dialog_body2">
+        To create an incident, simply click on any empty spot on the map!
+    </string>
+    <string name="accident_icon_contentDescription">Accident Icon:</string>
+    <string name="accident">ACCIDENT</string>
+    <string name="road_block_icon_contentDescription">Road Block Icon</string>
+    <string name="road_block">ROAD BLOCK</string>
+    <string name="theft_icon_contentDescription">Theft Icon</string>
+    <string name="theft">THEFT</string>
+    <string name="road_construction_icon_contentDescription">Road Construction Icon</string>
+    <string name="road_construction">ROAD CONSTRUCTION</string>
+    <string name="fire_icon_contentDescription">Fire Icon</string>
+    <string name="fire">FIRE</string>
+    <string name="ok">OK</string>
+    <string name="other_icon_contentDescription">Other Icon</string>
+    <string name="other">OTHER</string>
 
     <string-array name="type_list">
         <item>ACCIDENT</item>
