@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">IncidentMapper</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="description">Description</string>
+    <string name="add_incident">Add Incident</string>
+    <string name="select_a_type">Select a type</string>
+
+    <string-array name="type_list">
+        <item>ACCIDENT</item>
+        <item>ROAD BLOCK</item>
+        <item>THEFT</item>
+        <item>ROAD CONSTRUCTION</item>
+        <item>FIRE</item>
+        <item>OTHER</item>
+    </string-array>
+</resources>
