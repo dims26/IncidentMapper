@@ -7,6 +7,7 @@ import com.dims.incidentmapper.utils.LoadState
 import com.dims.incidentmapper.utils.Loaded
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.*
 import javax.inject.Inject

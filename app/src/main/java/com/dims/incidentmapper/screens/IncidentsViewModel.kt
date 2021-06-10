@@ -36,8 +36,7 @@ class IncidentsViewModel @Inject constructor(private val incidentRepository: Inc
         googleMap.setOnMapClickListener { latLng -> _mapClickLiveData.postValue(Event(latLng)) }
 
         incidentRepository.monitorIncidents(incidentFlow)
-
-        updateMarkers(googleMap)
+        updateIncidents(googleMap)
     }
 
     fun addIncident(type: IncidentType, description: String, latLng: LatLng) {
@@ -49,12 +48,12 @@ class IncidentsViewModel @Inject constructor(private val incidentRepository: Inc
         }
     }
 
-    private fun updateMarkers(googleMap: GoogleMap) {
+    private fun updateIncidents(googleMap: GoogleMap) {
         viewModelScope.launch {
             incidentFlow.collectLatest {
                 when (it) {
-                    Idle -> { }
-                    is LoadError -> { /*To be done*/ }
+                    Idle -> {}
+                    is LoadError -> Toast.makeText(getApplication(), "Error loading incidents", Toast.LENGTH_SHORT).show()
                     is Loaded<*> -> {
                         googleMap.clear()
                         @Suppress("UNCHECKED_CAST")
@@ -70,7 +69,7 @@ class IncidentsViewModel @Inject constructor(private val incidentRepository: Inc
                             )
                         }
                     }
-                    Loading -> { /*To be done*/ }
+                    Loading -> {}
                 }
             }
         }
@@ -83,7 +82,7 @@ class IncidentsViewModel @Inject constructor(private val incidentRepository: Inc
             IncidentType.THEFT -> BitmapDescriptorFactory.fromBitmap(bitmapFromVector(R.drawable.theft)!!)
             IncidentType.ROAD_CONSTRUCTION -> BitmapDescriptorFactory.fromBitmap(bitmapFromVector(R.drawable.road_construction)!!)
             IncidentType.FIRE -> BitmapDescriptorFactory.fromBitmap(bitmapFromVector(R.drawable.fire)!!)
-            IncidentType.OTHER -> BitmapDescriptorFactory.defaultMarker()
+            IncidentType.OTHER -> BitmapDescriptorFactory.fromBitmap(bitmapFromVector(R.drawable.marker)!!)
         }
 
     private fun bitmapFromVector(vectorResId: Int): Bitmap? =

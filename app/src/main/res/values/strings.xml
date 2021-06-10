@@ -8,7 +8,7 @@
     <string name="welcome">Welcome</string>
     <string name="welcome_dialog_body">Welcome to Incident Mapper!<br/>
         This is a tool to facilitate viewing and reporting incidents.
-        There are five kinds of incidents:
+        There are six kinds of incidents:
     </string>
     <string name="welcome_dialog_body2">
         To create an incident, simply click on any empty spot on the map!
